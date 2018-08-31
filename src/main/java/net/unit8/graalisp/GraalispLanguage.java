@@ -6,7 +6,7 @@ import com.oracle.truffle.api.TruffleLanguage;
 import com.oracle.truffle.api.source.Source;
 import net.unit8.graalisp.parser.GraalispLexer;
 import net.unit8.graalisp.parser.GraalispParser;
-import net.unit8.graalisp.runtime.GraaispContext;
+import net.unit8.graalisp.runtime.GraalispContext;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -16,7 +16,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
         name ="Graalisp",
         version="0.1.0",
         mimeType = "application/x-graalisp")
-public class GraalispLanguage extends TruffleLanguage<GraaispContext> {
+public class GraalispLanguage extends TruffleLanguage<GraalispContext> {
     @Override
     protected CallTarget parse(ParsingRequest request) throws Exception {
         Source source = request.getSource();
@@ -29,7 +29,7 @@ public class GraalispLanguage extends TruffleLanguage<GraaispContext> {
         GraalispParser parser = new GraalispParser(tokenStream);
         GraalispParser.ProgramContext prog = parser.program();
 
-        // creates Truffle nodes from ANTLR parse result
+        // creates Truffle node from ANTLR parse result
         ParseTreeWalker treeWalker = new ParseTreeWalker();
         GraalispParseTreeListener listener = new GraalispParseTreeListener();
         treeWalker.walk(listener, prog);
@@ -37,11 +37,11 @@ public class GraalispLanguage extends TruffleLanguage<GraaispContext> {
         return Truffle.getRuntime().createCallTarget(listener.getRoot(this));
     }
 
-    protected GraaispContext createContext(Env env) {
-        return new GraaispContext();
+    protected GraalispContext createContext(Env env) {
+        return new GraalispContext(this, env);
     }
 
-    protected Object getLanguageGlobal(GraaispContext context) {
+    protected Object getLanguageGlobal(GraalispContext context) {
         return context;
     }
 

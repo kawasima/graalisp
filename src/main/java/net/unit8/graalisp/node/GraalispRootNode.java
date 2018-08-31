@@ -1,4 +1,4 @@
-package net.unit8.graalisp.nodes;
+package net.unit8.graalisp.node;
 
 import com.oracle.truffle.api.TruffleLanguage;
 import com.oracle.truffle.api.frame.FrameDescriptor;
