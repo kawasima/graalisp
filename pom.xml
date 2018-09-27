@@ -22,7 +22,10 @@
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
-                <version>4.3</version>
+                <version>4.7.1</version>
+                <configuration>
+                    <outputDirectory>src/main/java/net/unit8/graalisp/parser</outputDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <id>antlr</id>
@@ -38,12 +41,12 @@
         <dependency>
             <groupId>com.oracle.truffle</groupId>
             <artifactId>truffle-api</artifactId>
-            <version>0.30</version> <!-- or any later version -->
+            <version>1.0.0-rc5</version> <!-- or any later version -->
         </dependency>
         <dependency>
             <groupId>com.oracle.truffle</groupId>
             <artifactId>truffle-dsl-processor</artifactId>
-            <version>0.30</version>
+            <version>1.0.0-rc5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

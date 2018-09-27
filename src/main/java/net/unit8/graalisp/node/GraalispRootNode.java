@@ -8,11 +8,14 @@ import com.oracle.truffle.api.nodes.RootNode;
 
 @NodeInfo
 public class GraalispRootNode extends RootNode {
-    public GraalispRootNode(TruffleLanguage<?> language, FrameDescriptor frameDescriptor) {
+    @Child
+    private GraalispNode bodyNode;
+
+    public GraalispRootNode(TruffleLanguage<?> language, FrameDescriptor frameDescriptor, GraalispNode bodyNode) {
         super(language, frameDescriptor);
     }
 
     public Object execute(VirtualFrame frame) {
-        return null;
+        return bodyNode.executeGeneric(frame);
     }
 }

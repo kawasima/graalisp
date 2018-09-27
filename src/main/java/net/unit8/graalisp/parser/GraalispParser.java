@@ -1,4 +1,4 @@
-// Generated from Graalisp.g4 by ANTLR 4.3
+// Generated from Graalisp.g4 by ANTLR 4.7.1
 
 package net.unit8.graalisp.parser;
 
@@ -8,10 +8,12 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class GraalispParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.3", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -19,21 +21,54 @@ public class GraalispParser extends Parser {
 	public static final int
 		IDENTIFIER=1, PLUS=2, MINUS=3, MULT=4, DIV=5, OP=6, CP=7, STRING=8, NUMBER=9, 
 		WHITESPACE=10, DIGIT=11, LETTER=12, LOWER=13, UPPER=14;
-	public static final String[] tokenNames = {
-		"<INVALID>", "IDENTIFIER", "'+'", "'-'", "'*'", "'/'", "'('", "')'", "STRING", 
-		"NUMBER", "WHITESPACE", "DIGIT", "LETTER", "LOWER", "UPPER"
-	};
 	public static final int
 		RULE_program = 0, RULE_expression = 1;
 	public static final String[] ruleNames = {
 		"program", "expression"
 	};
 
-	@Override
-	public String getGrammarFileName() { return "Graalisp.g4"; }
+	private static final String[] _LITERAL_NAMES = {
+		null, null, "'+'", "'-'", "'*'", "'/'", "'('", "')'"
+	};
+	private static final String[] _SYMBOLIC_NAMES = {
+		null, "IDENTIFIER", "PLUS", "MINUS", "MULT", "DIV", "OP", "CP", "STRING", 
+		"NUMBER", "WHITESPACE", "DIGIT", "LETTER", "LOWER", "UPPER"
+	};
+	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+
+	/**
+	 * @deprecated Use {@link #VOCABULARY} instead.
+	 */
+	@Deprecated
+	public static final String[] tokenNames;
+	static {
+		tokenNames = new String[_SYMBOLIC_NAMES.length];
+		for (int i = 0; i < tokenNames.length; i++) {
+			tokenNames[i] = VOCABULARY.getLiteralName(i);
+			if (tokenNames[i] == null) {
+				tokenNames[i] = VOCABULARY.getSymbolicName(i);
+			}
+
+			if (tokenNames[i] == null) {
+				tokenNames[i] = "<INVALID>";
+			}
+		}
+	}
 
 	@Override
-	public String[] getTokenNames() { return tokenNames; }
+	@Deprecated
+	public String[] getTokenNames() {
+		return tokenNames;
+	}
+
+	@Override
+
+	public Vocabulary getVocabulary() {
+		return VOCABULARY;
+	}
+
+	@Override
+	public String getGrammarFileName() { return "Graalisp.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -50,11 +85,11 @@ public class GraalispParser extends Parser {
 	}
 	public static class ProgramContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(GraalispParser.EOF, 0); }
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
-		}
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
 		}
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -83,14 +118,16 @@ public class GraalispParser extends Parser {
 			while (_la==OP) {
 				{
 				{
-				setState(4); expression();
+				setState(4);
+				expression();
 				}
 				}
 				setState(9);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(10); match(EOF);
+			setState(10);
+			match(EOF);
 			}
 		}
 		catch (RecognitionException re) {
@@ -105,26 +142,26 @@ public class GraalispParser extends Parser {
 	}
 
 	public static class ExpressionContext extends ParserRuleContext {
-		public TerminalNode NUMBER(int i) {
-			return getToken(GraalispParser.NUMBER, i);
-		}
 		public TerminalNode OP() { return getToken(GraalispParser.OP, 0); }
+		public List<TerminalNode> IDENTIFIER() { return getTokens(GraalispParser.IDENTIFIER); }
+		public TerminalNode IDENTIFIER(int i) {
+			return getToken(GraalispParser.IDENTIFIER, i);
+		}
+		public TerminalNode CP() { return getToken(GraalispParser.CP, 0); }
+		public List<TerminalNode> STRING() { return getTokens(GraalispParser.STRING); }
 		public TerminalNode STRING(int i) {
 			return getToken(GraalispParser.STRING, i);
 		}
-		public TerminalNode IDENTIFIER(int i) {
-			return getToken(GraalispParser.IDENTIFIER, i);
+		public List<TerminalNode> NUMBER() { return getTokens(GraalispParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(GraalispParser.NUMBER, i);
+		}
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
 		}
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public List<TerminalNode> STRING() { return getTokens(GraalispParser.STRING); }
-		public List<TerminalNode> NUMBER() { return getTokens(GraalispParser.NUMBER); }
-		public List<TerminalNode> IDENTIFIER() { return getTokens(GraalispParser.IDENTIFIER); }
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
-		}
-		public TerminalNode CP() { return getToken(GraalispParser.CP, 0); }
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -146,33 +183,40 @@ public class GraalispParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(12); match(OP);
-			setState(13); match(IDENTIFIER);
+			setState(12);
+			match(OP);
+			setState(13);
+			match(IDENTIFIER);
 			setState(20);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IDENTIFIER) | (1L << OP) | (1L << STRING) | (1L << NUMBER))) != 0)) {
 				{
 				setState(18);
+				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case IDENTIFIER:
 					{
-					setState(14); match(IDENTIFIER);
+					setState(14);
+					match(IDENTIFIER);
 					}
 					break;
 				case STRING:
 					{
-					setState(15); match(STRING);
+					setState(15);
+					match(STRING);
 					}
 					break;
 				case NUMBER:
 					{
-					setState(16); match(NUMBER);
+					setState(16);
+					match(NUMBER);
 					}
 					break;
 				case OP:
 					{
-					setState(17); expression();
+					setState(17);
+					expression();
 					}
 					break;
 				default:
@@ -183,7 +227,8 @@ public class GraalispParser extends Parser {
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(23); match(CP);
+			setState(23);
+			match(CP);
 			}
 		}
 		catch (RecognitionException re) {
@@ -198,15 +243,15 @@ public class GraalispParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\20\34\4\2\t\2\4\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20\34\4\2\t\2\4\3"+
 		"\t\3\3\2\7\2\b\n\2\f\2\16\2\13\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7"+
-		"\3\25\n\3\f\3\16\3\30\13\3\3\3\3\3\3\3\2\2\4\2\4\2\2\36\2\t\3\2\2\2\4"+
-		"\16\3\2\2\2\6\b\5\4\3\2\7\6\3\2\2\2\b\13\3\2\2\2\t\7\3\2\2\2\t\n\3\2\2"+
-		"\2\n\f\3\2\2\2\13\t\3\2\2\2\f\r\7\2\2\3\r\3\3\2\2\2\16\17\7\b\2\2\17\26"+
-		"\7\3\2\2\20\25\7\3\2\2\21\25\7\n\2\2\22\25\7\13\2\2\23\25\5\4\3\2\24\20"+
-		"\3\2\2\2\24\21\3\2\2\2\24\22\3\2\2\2\24\23\3\2\2\2\25\30\3\2\2\2\26\24"+
-		"\3\2\2\2\26\27\3\2\2\2\27\31\3\2\2\2\30\26\3\2\2\2\31\32\7\t\2\2\32\5"+
-		"\3\2\2\2\5\t\24\26";
+		"\3\25\n\3\f\3\16\3\30\13\3\3\3\3\3\3\3\2\2\4\2\4\2\2\2\36\2\t\3\2\2\2"+
+		"\4\16\3\2\2\2\6\b\5\4\3\2\7\6\3\2\2\2\b\13\3\2\2\2\t\7\3\2\2\2\t\n\3\2"+
+		"\2\2\n\f\3\2\2\2\13\t\3\2\2\2\f\r\7\2\2\3\r\3\3\2\2\2\16\17\7\b\2\2\17"+
+		"\26\7\3\2\2\20\25\7\3\2\2\21\25\7\n\2\2\22\25\7\13\2\2\23\25\5\4\3\2\24"+
+		"\20\3\2\2\2\24\21\3\2\2\2\24\22\3\2\2\2\24\23\3\2\2\2\25\30\3\2\2\2\26"+
+		"\24\3\2\2\2\26\27\3\2\2\2\27\31\3\2\2\2\30\26\3\2\2\2\31\32\7\t\2\2\32"+
+		"\5\3\2\2\2\5\t\24\26";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

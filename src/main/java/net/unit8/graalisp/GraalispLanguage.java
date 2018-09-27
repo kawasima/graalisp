@@ -18,34 +18,12 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
         mimeType = "application/x-graalisp")
 public class GraalispLanguage extends TruffleLanguage<GraalispContext> {
     @Override
-    protected CallTarget parse(ParsingRequest request) throws Exception {
-        Source source = request.getSource();
-        CharStream charStream = CharStreams.fromStream(source.getInputStream());
-        // lexing
-        GraalispLexer lexer = new GraalispLexer(charStream);
-        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-
-        // parsing
-        GraalispParser parser = new GraalispParser(tokenStream);
-        GraalispParser.ProgramContext prog = parser.program();
-
-        // creates Truffle node from ANTLR parse result
-        ParseTreeWalker treeWalker = new ParseTreeWalker();
-        GraalispParseTreeListener listener = new GraalispParseTreeListener();
-        treeWalker.walk(listener, prog);
-
-        return Truffle.getRuntime().createCallTarget(listener.getRoot(this));
-    }
-
-    protected GraalispContext createContext(Env env) {
-        return new GraalispContext(this, env);
-    }
-
-    protected Object getLanguageGlobal(GraalispContext context) {
-        return context;
-    }
-
     protected boolean isObjectOfLanguage(Object object) {
         return false;
+    }
+
+    @Override
+    protected GraalispContext createContext(Env env) {
+        return new GraalispContext();
     }
 }

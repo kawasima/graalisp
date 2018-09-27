@@ -8,6 +8,6 @@ import net.unit8.graalisp.parser.GraalispBaseListener;
 public class GraalispParseTreeListener extends GraalispBaseListener {
     private GraalispNode node;
     public GraalispRootNode getRoot(GraalispLanguage language) {
-        return new GraalispRootNode(language, new FrameDescriptor());
+        return new GraalispRootNode(language, new FrameDescriptor(), null);
     }
 }

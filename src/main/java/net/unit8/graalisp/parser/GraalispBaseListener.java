@@ -1,10 +1,9 @@
-// Generated from Graalisp.g4 by ANTLR 4.3
+// Generated from Graalisp.g4 by ANTLR 4.7.1
 
 package net.unit8.graalisp.parser;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
@@ -19,49 +18,48 @@ public class GraalispBaseListener implements GraalispListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression(@NotNull GraalispParser.ExpressionContext ctx) { }
+	@Override public void enterProgram(GraalispParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression(@NotNull GraalispParser.ExpressionContext ctx) { }
+	@Override public void exitProgram(GraalispParser.ProgramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpression(GraalispParser.ExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpression(GraalispParser.ExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(@NotNull GraalispParser.ProgramContext ctx) { }
+	@Override public void enterEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(@NotNull GraalispParser.ProgramContext ctx) { }
-
+	@Override public void exitEveryRule(ParserRuleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(@NotNull ParserRuleContext ctx) { }
+	@Override public void visitTerminal(TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(@NotNull ParserRuleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void visitTerminal(@NotNull TerminalNode node) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void visitErrorNode(@NotNull ErrorNode node) { }
+	@Override public void visitErrorNode(ErrorNode node) { }
 }
